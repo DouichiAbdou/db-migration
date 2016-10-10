@@ -29,7 +29,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>4.0.3</version>
                 <configuration>
-                    <url>jdbc:h2:file:./target/foobar</url>
+                    <url>jdbc:h2:file:./target/${bd}</url>
                     <user>sa</user>
                 </configuration>
                 <dependencies>
@@ -42,5 +42,18 @@
             </plugin>
         </plugins>
     </build>
-
+<profiles>
+    <profile>
+      <id>TEST</id>
+      <properties>
+        <bd>bdTest</bd>
+      </properties>
+    </profile>
+    <profile>
+      <id>DEV</id>
+      <properties>
+        <bd>bdDev</bd>
+      </properties>
+    </profile>
+  </profiles>
 </project>
